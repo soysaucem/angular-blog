@@ -1,4 +1,14 @@
-<div class="title-container">
+<div class="wrapper-header">
   <h1>{{title}}</h1>
+  <div class="wrapper-profile">
+    <a class="profile-link fa fa-facebook-square" href="https://www.facebook.com/triet.minh.526"></a>
+    <a class="profile-link fa fa-linkedin" href="https://www.linkedin.com/in/trietjack/"></a>
+    <a class="profile-link fa fa-github-square" href="https://github.com/trietjack"></a>
+  </div>
 </div>
-<app-posts></app-posts>
+<div class="wrapper-navigation">
+  <app-navigation-bar></app-navigation-bar>
+  <button routerLink="/new-post">New Post</button>
+  <app-search-box></app-search-box>
+</div>
+<router-outlet></router-outlet>

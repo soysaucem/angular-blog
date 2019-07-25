@@ -1,1 +1,5 @@
-<p>post-detail works!</p>
+<div *ngIf="post">
+  <h3>{{post.title | uppercase}}</h3>
+  <p>{{post.body}}</p>
+  <app-comments></app-comments>
+</div>

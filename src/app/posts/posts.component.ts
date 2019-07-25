@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post';
-import { POSTS } from '../mock-posts';
+import { Post } from '../models/post';
 import { PostDataService } from '../services/post-data.service';
 
 @Component({
@@ -20,4 +19,5 @@ export class PostsComponent implements OnInit {
   getPosts(): void {
     this.postDataService.getPosts().subscribe(posts => this.posts = posts);
   }
+
 }

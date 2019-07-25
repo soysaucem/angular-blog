@@ -1,1 +1,9 @@
-<p>comments works!</p>
+<div *ngIf="comments">
+  <h4>Comments</h4>
+  <ul>
+    <li *ngFor="let comment of comments">
+      <label>{{comment.name}}</label>
+      <p>{{comment.body}}</p>
+    </li>
+  </ul>
+</div>

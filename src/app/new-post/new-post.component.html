@@ -1,0 +1,4 @@
+<input #newPostTitle type="text" placeholder="Type title for new post"/>
+<textarea #newPostContent type="text"></textarea>
+<button routerLink="/home"
+        (click)="addNewPost({id: 150, title: newPostTitle.value, body: newPostContent.value})">Post</button>
