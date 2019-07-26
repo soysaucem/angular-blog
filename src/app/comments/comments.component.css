@@ -1,0 +1,74 @@
+.comments-list {
+  display: block;
+  list-style: none;
+}
+
+.comment {
+  margin-bottom: 20px;
+  border: 1px solid #eaeaea;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.wrapper-comment-content {
+  color: #656565;
+  background: #f7f7f7 none repeat scroll 0 0;
+  margin-top: 10px;
+}
+
+.comment-content {
+  padding: 20px;
+}
+
+.comment-header {
+  margin-bottom: 20px;
+}
+
+.wrapper-post-comment {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.email-receiver {
+  display: block;
+  width: 25%;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid #eaeaea;
+}
+
+.comment-receiver {
+  display: block;
+  width: 75%;
+  height: 75px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid #eaeaea;
+}
+
+.comment-submission {
+  width: 70px;
+  padding: 10px;
+  border: none;
+  background: rgb(228, 145, 217);
+  border-radius: 5% 5%;
+  font-family: inherit;
+  color: #fff;
+}
+
+.email-receiver:focus, .comment-receiver:focus, .comment-submission:focus {
+  outline: none;
+}
+
+.comment-submission:hover {
+  background: rgb(170, 111, 162);
+}

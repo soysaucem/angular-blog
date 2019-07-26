@@ -1,14 +1,19 @@
 <div class="wrapper-header">
-  <h1>{{title}}</h1>
-  <div class="wrapper-profile">
-    <a class="profile-link fa fa-facebook-square" href="https://www.facebook.com/triet.minh.526"></a>
-    <a class="profile-link fa fa-linkedin" href="https://www.linkedin.com/in/trietjack/"></a>
-    <a class="profile-link fa fa-github-square" href="https://github.com/trietjack"></a>
+    <div class="flex">
+      <a class="header-link" routerLink="/home">
+        <i class="fa fa-rss fa-3x"></i><h1>{{title}}</h1>
+      </a>
+      <div class="wrapper-profile">
+        <a class="profile-link fa fa-facebook-square" href="https://www.facebook.com/triet.minh.526"></a>
+        <a class="profile-link fa fa-linkedin" href="https://www.linkedin.com/in/trietjack/"></a>
+        <a class="profile-link fa fa-github-square" href="https://github.com/trietjack"></a>
+      </div>
   </div>
 </div>
 <div class="wrapper-navigation">
-  <app-navigation-bar></app-navigation-bar>
-  <button routerLink="/new-post">New Post</button>
-  <app-search-box></app-search-box>
+  <div class="flex">
+    <app-navigation-bar></app-navigation-bar>
+    <a class="search-button fa fa-search"></a>
+  </div>
 </div>
 <router-outlet></router-outlet>

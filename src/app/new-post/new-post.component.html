@@ -1,4 +1,8 @@
-<input #newPostTitle type="text" placeholder="Type title for new post"/>
-<textarea #newPostContent type="text"></textarea>
-<button routerLink="/home"
-        (click)="addNewPost({id: 150, title: newPostTitle.value, body: newPostContent.value})">Post</button>
+<div class="wrapper-new-post">
+  <div class="form">
+    <input class="post-title" #newPostTitle type="text" placeholder="Type title for new post"/>
+    <textarea class="post-content" #newPostContent type="text"></textarea>
+    <button class="new-post-submission" routerLink="/home"
+            (click)="addNewPost({id: 150, title: newPostTitle.value, body: newPostContent.value})">Post</button>
+  </div>
+</div>

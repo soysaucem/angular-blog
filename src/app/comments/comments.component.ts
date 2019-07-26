@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommentsComponent implements OnInit {
   comments: Comment[];
-
+  id = +this.activatedRoute.snapshot.paramMap.get('id');
   constructor(private postDataService: PostDataService,
               private activatedRoute: ActivatedRoute) { }
 
@@ -19,8 +19,24 @@ export class CommentsComponent implements OnInit {
   }
 
   getPostComments(): void {
-    const id = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.postDataService.getPostComments(id).subscribe(comments => this.comments = comments);
-    console.log(this.comments);
+    this.postDataService.getPostComments(this.id)
+    .subscribe(comments => this.comments = comments);
+  }
+
+  addPostComment(email: string, body: string): void {
+    if (!body || !email) { return; }
+    const comment = {
+      postId: this.id,
+      id: this.generateCommentId(),
+      name: 'naqweqme',
+      email,
+      body
+    };
+    this.postDataService.addNewComment(comment)
+    .subscribe(comment => this.comments.push(comment));
+  }
+
+  generateCommentId(): number {
+    return this.comments.length + 1;
   }
 }

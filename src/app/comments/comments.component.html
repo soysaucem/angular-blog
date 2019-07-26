@@ -1,9 +1,16 @@
 <div *ngIf="comments">
-  <h4>Comments</h4>
-  <ul>
-    <li *ngFor="let comment of comments">
-      <label>{{comment.name}}</label>
-      <p>{{comment.body}}</p>
+  <h3 class="comment-header">Comments</h3>
+  <ul class="comments-list">
+    <li class="comment" *ngFor="let comment of comments">
+      <label class="comment-title">{{comment.email | titlecase}}</label>
+      <div class="wrapper-comment-content">
+        <p class="comment-content">{{comment.body}}</p>
+      </div>
     </li>
   </ul>
+  <div class="wrapper-post-comment">
+    <input class="email-receiver" #userEmail type="email" placeholder="Enter your email"/>
+    <textarea class="comment-receiver" #commentContext type="text"></textarea>
+    <button class="comment-submission" (click)="addPostComment(userEmail.value, commentContext.value)">Publish</button>
+  </div>
 </div>

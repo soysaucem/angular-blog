@@ -1,0 +1,9 @@
+.wrapper-post-detail {
+  max-width: 992px;
+  margin: 60px auto;
+}
+
+.post-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

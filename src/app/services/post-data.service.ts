@@ -33,5 +33,7 @@ export class PostDataService {
     return this.http.post<Post>(this.postDataUrl, post, this.httpOptions);
   }
 
-
+  addNewComment(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`https://jsonplaceholder.typicode.com/comments?postId=${comment.postId}`, comment, this.httpOptions);
+  }
 }

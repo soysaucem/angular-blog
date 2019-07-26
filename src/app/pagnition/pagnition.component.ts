@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-pagnition',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagnition.component.css']
 })
 export class PagnitionComponent implements OnInit {
+  @Input() maxPages: number;
+  @Input() itemPerPage: number;
 
+  @Output() pageChange = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  generatePages(): void {
+
   }
 
 }

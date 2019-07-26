@@ -1,3 +1,53 @@
-pagination-controls {
-  
+.posts-list {
+  display: grid;
+  max-width: 1280px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 50px;
+  margin: 50px auto;
+  list-style: none;
+}
+
+.post-item:first-of-type {
+  margin-top: 30px;
+}
+
+.post-item:last-of-type {
+  margin-bottom: 30px;
+}
+
+.post-item {
+  display: block;
+  border: 1px solid #eaeaea;
+  background: rgba(0,0,0,.08);
+  color: rgb(63, 63, 63);
+  text-decoration: none;
+}
+
+.post-item:hover {
+  box-shadow: 0 10px 15px -10px rgba(30,45,62,.21), 0 5px 40px -10px rgba(31,44,60,.1);
+}
+
+.post-image {
+  object-fit: cover;
+  width: 100%;
+}
+
+.post-label {
+  padding: 15px;
+  text-align: center;
+}
+
+.new-post-button {
+  color: #a18cd1;
+  margin-top: 15px;
+  margin-left: 50%;
+  margin-right: -50%;
+}
+
+.new-post-button:hover {
+  color: #7756c5;
+}
+
+.new-post-button:focus {
+  outline: none;
 }
