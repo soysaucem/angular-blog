@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { PostDataService } from '../services/post-data.service';
 import { Post } from '../models/post';
 
@@ -8,13 +8,34 @@ import { Post } from '../models/post';
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+  postsData: Post[];
 
   constructor(private postDataService: PostDataService) { }
 
   ngOnInit() {
+    this.postDataService.getPosts().subscribe((posts) => this.postsData = posts);
   }
 
-  addNewPost(post: Post): void {
-    this.postDataService.addNewPost(post).subscribe();
+  // ngOnChanges() {
+  //   this.postDataService.getPosts().subscribe((posts) => this.postsData = posts);
+  // }
+
+  addNewPost(title: string, body: string): void {
+    const newPost: Post = {
+      id: this.generatePostId(),
+      title,
+      body
+    };
+
+    const titleInputField = document.getElementById('post-title') as HTMLInputElement;
+    const contentInputField = document.getElementById('post-content') as HTMLInputElement;
+    titleInputField.value = '';
+    contentInputField.value = '';
+    this.postDataService.addNewPost(newPost).subscribe();
+  }
+
+  generatePostId(): number {
+    console.log(this.postsData.length);
+    return this.postsData.length > 0 ? Math.max(...this.postsData.map(post => post.id)) + 1 : 1;
   }
 }

@@ -8,8 +8,8 @@ import { Comment} from '../models/comment';
   providedIn: 'root'
 })
 export class PostDataService {
-  postDataUrl = 'https://jsonplaceholder.typicode.com/posts';
-  httpOptions = {
+  readonly postDataUrl = 'https://jsonplaceholder.typicode.com/posts';
+  readonly httpOptions = {
     headers: new HttpHeaders ({
       'Content-Type': 'application/json'
     })
