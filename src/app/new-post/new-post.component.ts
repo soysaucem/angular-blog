@@ -20,7 +20,7 @@ export class NewPostComponent implements OnInit {
   //   this.postDataService.getPosts().subscribe((posts) => this.postsData = posts);
   // }
 
-  addNewPost(title: string, body: string): void {
+  add(title: string, body: string): void {
     const newPost: Post = {
       id: this.generatePostId(),
       title,
@@ -35,7 +35,6 @@ export class NewPostComponent implements OnInit {
   }
 
   generatePostId(): number {
-    console.log(this.postsData.length);
     return this.postsData.length > 0 ? Math.max(...this.postsData.map(post => post.id)) + 1 : 1;
   }
 }

@@ -3,6 +3,6 @@
     <input id="post-title" class="post-title" #newPostTitle type="text" placeholder="Type title for new post"/>
     <textarea id="post-content" class="post-content" #newPostContent type="text"></textarea>
     <button class="new-post-submission" routerLink="/home"
-            (click)="addNewPost({title: newPostTitle.value, body: newPostContent.value})">Post</button>
+            (click)="add({title: newPostTitle.value, body: newPostContent.value})">Post</button>
   </div>
 </div>
