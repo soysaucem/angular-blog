@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
@@ -27,8 +26,7 @@ import { PagnitionComponent } from './pagnition/pagnition.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    NgxPaginationModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

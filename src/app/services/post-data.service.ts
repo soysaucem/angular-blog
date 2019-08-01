@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Post } from '../models/post';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Comment } from '../models/comment';
+import { POSTS } from '../models/mock-posts';
+import { COMMENTS } from '../models/mock-comments';
+import { Map } from 'immutable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostDataService {
-  readonly postDataUrl = 'https://jsonplaceholder.typicode.com/posts';
-  readonly httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
+  // readonly postDataUrl = 'https://jsonplaceholder.typicode.com/posts';
+  // readonly httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   })
+  // };
+
+  postsMap: Map<number, Post>;
+  commentsMap: Map<number, Comment>;
 
   constructor(private http: HttpClient) { }
 
@@ -41,39 +47,83 @@ export class PostDataService {
    *       Give this a go and let me know when you've made the adjustments.
    */
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postDataUrl);
-  }
+  // getPosts(): Observable<Post[]> {
+  //   return this.http.get<Post[]>(this.postDataUrl);
+  // }
 
-  getPostByID(id: number): Observable<Post> {
-    /**
-     * Khoi:  Given what I said above, you might want to store the post in a
-     *        Map<number, Post>(), with the id as the key to retrieve the post.
-     *
-     *        If you're returning a fixed post every time, then this methods
-     *        should return a Promise<Post> instead. If you are up for some
-     *        cool Observable stuff, I recommend to use:
-     *        `Map<number, BehaviorSubject<Post>>` to store and retrieve post
-     *        observables. This is actually a data structure I use very often
-     *        at Modulr Tech for real-time technologies. Give it a go!
-     */
-    return this.http.get<Post>(`${this.postDataUrl}/${id}`);
-  }
+  // getPostByID(id: number): Observable<Post> {
+  //   /**
+  //    * Khoi:  Given what I said above, you might want to store the post in a
+  //    *        Map<number, Post>(), with the id as the key to retrieve the post.
+  //    *
+  //    *        If you're returning a fixed post every time, then this methods
+  //    *        should return a Promise<Post> instead. If you are up for some
+  //    *        cool Observable stuff, I recommend to use:
+  //    *        `Map<number, BehaviorSubject<Post>>` to store and retrieve post
+  //    *        observables. This is actually a data structure I use very often
+  //    *        at Modulr Tech for real-time technologies. Give it a go!
+  //    */
+  //   return this.http.get<Post>(`${this.postDataUrl}/${id}`);
+  // }
 
   /**
    * Khoi:  Use the principles I mentioned previously to try and improve the
    *        other methods as well.
    */
 
-  getPostComments(id: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
+  // getPostComments(id: number): Observable<Comment[]> {
+  //   return this.http.get<Comment[]>(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
+  // }
+
+  // addNewPost(post: Post): Observable<Post> {
+  //   return this.http.post<Post>(this.postDataUrl, post, this.httpOptions);
+  // }
+
+  // addNewComment(comment: Comment): Observable<Comment> {
+  //   return this.http.post<Comment>(`https://jsonplaceholder.typicode.com/comments?postId=${comment.postId}`, comment, this.httpOptions);
+  // }
+
+  getPosts(): Map<number, Post> {
+    POSTS.forEach(
+      (post) => {
+        if(this.postsMap === undefined) {
+          this.postsMap = Map<number, Post>([ [post.id, post] ]);
+        } else {
+          this.postsMap = this.postsMap.set(post.id, post);
+        }
+      }
+    );
+    return this.postsMap;
   }
 
-  addNewPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.postDataUrl, post, this.httpOptions);
+  getComments(): Map<number, Comment> {
+    COMMENTS.forEach(
+      (comment) => {
+        if(this.commentsMap === undefined) {
+          this.commentsMap = Map<number, Comment>([ [comment.id, comment] ]);
+        } else {
+          this.commentsMap = this.commentsMap.set(comment.id, comment);
+        }
+      }
+    );
+    return this.commentsMap;
   }
 
-  addNewComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`https://jsonplaceholder.typicode.com/comments?postId=${comment.postId}`, comment, this.httpOptions);
+  getPostComments(postId: number, commentsMap: Map<number, Comment>)
+    : Map<number, Comment> {
+    console.log(commentsMap.filter(comment => comment.postId === postId));
+    return commentsMap.filter(comment => comment.postId === postId);
+  }
+
+  addPost(newPost: Post): void {
+    this.postsMap = this.postsMap.set(newPost.id, newPost);
+  }
+
+  addComment(newComment: Comment) {
+    this.commentsMap = this.commentsMap.set(newComment.id, newComment);
+  }
+
+  getPostById(id: number): Post {
+    return this.postsMap.get(id);
   }
 }

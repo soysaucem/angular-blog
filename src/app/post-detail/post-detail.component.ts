@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
-  @Input() post: Post;
+  post: Post;
 
   constructor(private postDataService: PostDataService,
     private activatedRoute: ActivatedRoute) { }
@@ -24,8 +24,7 @@ export class PostDetailComponent implements OnInit {
     // Get id of selected post by ActivatedRoute and convert it to number
     // Khoi: I think a better way to convert is to use Number(...) constructor
     //       E.g. `console.log(Number('1') + 1)` will print `2`
-    const id = +this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.postDataService.getPostByID(id).subscribe(post => this.post = post);
+    const postId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.post = this.postDataService.getPostById(postId);
   }
 }

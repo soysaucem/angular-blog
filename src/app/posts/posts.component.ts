@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { PostDataService } from '../services/post-data.service';
-import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-posts',
@@ -18,6 +17,15 @@ export class PostsComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.postDataService.getPosts().subscribe(posts => this.posts = posts);
+    this.postDataService.getPosts()
+      .forEach(
+        (value) => {
+          if(this.posts === undefined) {
+            this.posts = [value];
+          } else {
+            this.posts.push(value);
+          }
+        }
+      );
   }
 }

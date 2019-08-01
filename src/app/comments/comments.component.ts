@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostDataService } from '../services/post-data.service';
 import { Comment } from '../models/comment';
 import { ActivatedRoute } from '@angular/router';
@@ -10,37 +10,44 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CommentsComponent implements OnInit {
   comments: Comment[];
-  postId = +this.activatedRoute.snapshot.paramMap.get('id');
+  postId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
   constructor(private postDataService: PostDataService,
-              private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getPostComments();
   }
 
   getPostComments(): void {
-    this.postDataService.getPostComments(this.postId)
-    .subscribe(comments => this.comments = comments);
+    this.postDataService.getPostComments(this.postId,
+      this.postDataService.getComments())
+      .forEach(
+        (value) => {
+          if(this.comments === undefined) {
+            this.comments = [value];
+          } else {
+            this.comments.push(value);
+          }
+        }
+      );
   }
 
   addPostComment(email: string, body: string): void {
     if (!body || !email) { return; }
+
     const newComment: Comment = {
       postId: this.postId,
       id: this.generateCommentId(),
       email,
       body
     };
-    const emailInputField = document.getElementById('user-email') as HTMLInputElement;
-    const commentInputField = document.getElementById('user-comment') as HTMLInputElement;
-
-    emailInputField.value = '';
-    commentInputField.value = '';
-    this.postDataService.addNewComment(newComment)
-    .subscribe(comment => this.comments.push(comment));
+    this.postDataService.addComment(newComment);
+    this.comments.push(newComment);
   }
 
   generateCommentId(): number {
-    return this.comments.length > 0 ?   Math.max(...this.comments.map(comment => comment.id)) + 1 : 1;
+    return this.postDataService.getComments().size > 0 ?
+      Math.max(...this.postDataService.getComments().keys()) + 1 : 1;
   }
 }
