@@ -40,8 +40,8 @@
 .new-post-button {
   color: #a18cd1;
   margin-top: 15px;
-  margin-left: 50%;
-  margin-right: -50%;
+  display: flex;
+  justify-content: center;
 }
 
 .new-post-button:hover {
@@ -50,4 +50,17 @@
 
 .new-post-button:focus {
   outline: none;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .posts-list {
+    max-width: 720px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .posts-list {
+    margin: 50px 20px;
+  }
 }
