@@ -25,6 +25,7 @@ export class PostDetailComponent implements OnInit {
     // Khoi: I think a better way to convert is to use Number(...) constructor
     //       E.g. `console.log(Number('1') + 1)` will print `2`
     const postId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.post = this.postDataService.getPostById(postId);
+    this.postDataService.getPostById(postId)
+      .subscribe(post => this.post = post);
   }
 }

@@ -20,17 +20,17 @@ export class CommentsComponent implements OnInit {
   }
 
   getPostComments(): void {
-    this.postDataService.getPostComments(this.postId,
-      this.postDataService.getComments())
+    this.postDataService.getComments()
       .forEach(
         (value) => {
           if(this.comments === undefined) {
-            this.comments = [value];
+            value.subscribe(comment => this.comments = [comment]);
           } else {
-            this.comments.push(value);
+            value.subscribe(comment => this.comments.push(comment));
           }
         }
       );
+    this.comments = this.comments.filter(comment => comment.postId === this.postId);
   }
 
   addPostComment(email: string, body: string): void {

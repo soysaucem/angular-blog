@@ -6,6 +6,7 @@ import { Comment } from '../models/comment';
 import { POSTS } from '../models/mock-posts';
 import { COMMENTS } from '../models/mock-comments';
 import { Map } from 'immutable';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class PostDataService {
   //   })
   // };
 
-  postsMap: Map<number, Post>;
-  commentsMap: Map<number, Comment>;
+  postsMap: Map<number, BehaviorSubject<Post>>;
+  commentsMap: Map<number, BehaviorSubject<Comment>>;
 
   constructor(private http: HttpClient) { }
 
@@ -83,47 +84,48 @@ export class PostDataService {
   //   return this.http.post<Comment>(`https://jsonplaceholder.typicode.com/comments?postId=${comment.postId}`, comment, this.httpOptions);
   // }
 
-  getPosts(): Map<number, Post> {
+  getPosts(): Map<number, BehaviorSubject<Post>> {
     POSTS.forEach(
       (post) => {
+        const postSubject: BehaviorSubject<Post> = new BehaviorSubject<Post>(post);
         if(this.postsMap === undefined) {
-          this.postsMap = Map<number, Post>([ [post.id, post] ]);
+          this.postsMap = Map<number, BehaviorSubject<Post>>([ [post.id, postSubject] ]);
         } else {
-          this.postsMap = this.postsMap.set(post.id, post);
+          this.postsMap = this.postsMap.set(post.id, postSubject);
         }
       }
     );
     return this.postsMap;
   }
 
-  getComments(): Map<number, Comment> {
+  getComments(): Map<number, BehaviorSubject<Comment>> {
     COMMENTS.forEach(
       (comment) => {
+        const commentSubject: BehaviorSubject<Comment>
+          = new BehaviorSubject<Comment>(comment);
         if(this.commentsMap === undefined) {
-          this.commentsMap = Map<number, Comment>([ [comment.id, comment] ]);
+          this.commentsMap = Map<number, BehaviorSubject<Comment>>(
+            [ [comment.id, commentSubject] ]);
         } else {
-          this.commentsMap = this.commentsMap.set(comment.id, comment);
+          this.commentsMap = this.commentsMap.set(comment.id, commentSubject);
         }
       }
     );
     return this.commentsMap;
   }
 
-  getPostComments(postId: number, commentsMap: Map<number, Comment>)
-    : Map<number, Comment> {
-    console.log(commentsMap.filter(comment => comment.postId === postId));
-    return commentsMap.filter(comment => comment.postId === postId);
-  }
-
   addPost(newPost: Post): void {
-    this.postsMap = this.postsMap.set(newPost.id, newPost);
+    const newPostSubject: BehaviorSubject<Post> = new BehaviorSubject<Post>(newPost);
+    this.postsMap = this.postsMap.set(newPost.id, newPostSubject);
   }
 
   addComment(newComment: Comment) {
-    this.commentsMap = this.commentsMap.set(newComment.id, newComment);
+    const newCommentSubject: BehaviorSubject<Comment>
+      = new BehaviorSubject<Comment>(newComment);
+    this.commentsMap = this.commentsMap.set(newComment.id, newCommentSubject);
   }
 
-  getPostById(id: number): Post {
+  getPostById(id: number): BehaviorSubject<Post> {
     return this.postsMap.get(id);
   }
 }

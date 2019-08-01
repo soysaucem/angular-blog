@@ -21,9 +21,9 @@ export class PostsComponent implements OnInit {
       .forEach(
         (value) => {
           if(this.posts === undefined) {
-            this.posts = [value];
+            value.subscribe(post => this.posts = [post]);
           } else {
-            this.posts.push(value);
+            value.subscribe(post => this.posts.push(post));
           }
         }
       );
