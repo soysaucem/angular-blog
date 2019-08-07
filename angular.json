@@ -117,6 +117,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-blog"
+    }
+  },
+  "defaultProject": "angular-blog",
+  "cli": {
+    "defaultCollection": "@datorama/akita"
+  }
 }

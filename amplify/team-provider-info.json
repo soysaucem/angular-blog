@@ -1,0 +1,19 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "angular-blog-master-20190803091902-authRole",
+            "UnauthRoleArn": "arn:aws:iam::356306960630:role/angular-blog-master-20190803091902-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::356306960630:role/angular-blog-master-20190803091902-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "angular-blog-master-20190803091902-deployment",
+            "UnauthRoleName": "angular-blog-master-20190803091902-unauthRole",
+            "StackName": "angular-blog-master-20190803091902",
+            "StackId": "arn:aws:cloudformation:us-east-1:356306960630:stack/angular-blog-master-20190803091902/eadabf40-b57b-11e9-a766-0ad7f2019cc4"
+        },
+        "categories": {
+            "auth": {
+                "angularblog92cff77f": {}
+            }
+        }
+    }
+}

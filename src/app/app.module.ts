@@ -4,13 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PostsComponent } from './posts/posts.component';
-import { PostDetailComponent } from './post-detail/post-detail.component';
-import { CommentsComponent } from './comments/comments.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { SearchBoxComponent } from './search-box/search-box.component';
-import { NewPostComponent } from './new-post/new-post.component';
-import { PagnitionComponent } from './pagnition/pagnition.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { NewPostComponent } from './components/new-post/new-post.component';
+import { PagnitionComponent } from './components/pagnition/pagnition.component';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,11 @@ import { PagnitionComponent } from './pagnition/pagnition.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AmplifyAngularModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
-  providers: [],
+  providers: [AmplifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

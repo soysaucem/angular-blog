@@ -1,0 +1,23 @@
+<div *ngIf="comments">
+  <h3 class="comment-header">Comments</h3>
+  <ul class="comments-list">
+    <li class="comment" *ngFor="let comment of comments">
+      <label class="comment-title">{{comment.email | titlecase}}</label>
+      <div class="wrapper-comment-content">
+        <p class="comment-content">{{comment.body}}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="wrapper-post-comment">
+  <input id="user-email" class="email-receiver" #userEmail type="email" 
+    placeholder="Enter your email"/>
+  <textarea id="user-comment" class="comment-receiver" #commentContext 
+    type="text"></textarea>
+  <button class="comment-submission" 
+    (click)="onAddComment(userEmail.value, commentContext.value);
+      userEmail.value = ''; 
+      commentContext.value = '';">
+    Publish
+  </button>
+</div>

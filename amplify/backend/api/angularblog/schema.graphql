@@ -1,0 +1,12 @@
+type Post @model {
+  id: ID!
+  title: String!
+  body: String!
+}
+
+type Comment @model {
+  id: ID!
+  postId: ID!
+  email: String!
+  body: String!
+}
