@@ -5,7 +5,7 @@
     <textarea id="post-content" class="post-content" #newPostContent 
       type="text"></textarea>
     <button class="new-post-submission" routerLink="/home"
-      (click)="onAdd(newPostTitle.value, newPostContent.value);
+      (click)="onAddPost(newPostTitle.value, newPostContent.value);
         newPostTitle.value = '';
         newPostContent.value;">
       Post
