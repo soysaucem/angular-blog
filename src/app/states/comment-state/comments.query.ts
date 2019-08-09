@@ -1,8 +1,10 @@
 import { QueryEntity } from '@datorama/akita';
 import { CommentsStore, CommentsState } from './comments.store';
 import { Comment } from './comments.model';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { CommentsQueryService } from './comments-query.service';
+import { ModelCommentFilterInput } from 'src/API';
 
 @Injectable({
   providedIn: 'root'

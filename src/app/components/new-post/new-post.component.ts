@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../states/post-state/posts.model';
-import { CreatePostInput } from '../../../API';
+import { CreatePostInput } from 'src/API';
 import { PostsService } from 'src/app/states/post-state/posts.service';
 
 @Component({
@@ -23,10 +23,7 @@ export class NewPostComponent implements OnInit {
       title,
       body
     };
-    console.log(newPost);
 
     return await this.postsService.addPost(newPost);
-
-    // this.postDataService.addPost(newPost);
   }
 }

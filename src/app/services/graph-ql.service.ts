@@ -2,9 +2,6 @@
 //  This file was automatically generated and should not be edited.
 import { Injectable } from '@angular/core';
 import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-import { GetPostQueryVariables, CreatePostInput } from '../../API';
 import { Subject } from 'rxjs';
 
 @Injectable({

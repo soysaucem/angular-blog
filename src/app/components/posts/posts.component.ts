@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../../states/post-state/posts.model';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';
 import { PostsQueryService } from 'src/app/states/post-state/posts-query.service';
+import { DeletePostInput } from 'src/API';
+import { PostsService } from 'src/app/states/post-state/posts.service';
 
 @Component({
   selector: 'app-posts',
@@ -14,7 +16,8 @@ export class PostsComponent implements OnInit {
 
   constructor(
     private postQueryService: PostsQueryService,
-    private postsQuery: PostsQuery
+    private postsQuery: PostsQuery,
+    private postsService: PostsService
   ) { }
 
   ngOnInit() {
@@ -27,5 +30,13 @@ export class PostsComponent implements OnInit {
   async getPosts(): Promise<any> {
     await this.postQueryService.getPostsFromServer();
     this.postsQuery.posts$.subscribe(posts => this.posts = posts);
+  }
+
+  async onDeletePost(id: string, event) {
+    const input: DeletePostInput = { id };
+
+    event.path[1].remove();
+
+    return await this.postsService.deletePost(input);
   }
 }

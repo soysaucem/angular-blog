@@ -1,32 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post } from '../../states/post-state/posts.model';
 import { ActivatedRoute } from '@angular/router';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { PostsQueryService } from 'src/app/states/post-state/posts-query.service';
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
 
   post: Post[];
+  subscription: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private postsQuery: PostsQuery) { }
+    private postsQuery: PostsQuery,
+    private postsQueryService: PostsQueryService
+    ) { }
 
   ngOnInit() {
     this.getSelectedPost();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   /**
    * Get post selected by user to show post detail
    */
-  getSelectedPost(): void {
+  async getSelectedPost(): Promise<any> {
     const postID: string = this.activatedRoute.snapshot.paramMap.get('id');
-    this.postsQuery.posts$.pipe(
+
+    if (!this.postsQuery.hasEntity(postID)) {
+      await this.postsQueryService.getPostByID(postID);
+    }
+
+    this.subscription = this.postsQuery.posts$.pipe(
       map(response => response.filter(post => post.id === postID))
     ).subscribe(response => this.post = response);
   }

@@ -2,7 +2,7 @@ projects:
   angularblog:
     schemaPath: src/graphql/schema.json
     includes:
-      - src/graphql/**/*.graphql
+      - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
     extensions:

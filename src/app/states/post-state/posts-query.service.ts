@@ -1,4 +1,4 @@
-import { listPosts } from '../../../graphql/queries';
+import { listPosts, getPost } from '../../../graphql/queries';
 import { GraphQLService } from 'src/app/services/graph-ql.service';
 import { PostsStore } from './posts.store';
 import { Injectable } from '@angular/core';
@@ -17,6 +17,13 @@ export class PostsQueryService {
     return await this.graphQLService.query(listPosts, null)
       .then(
         (response) => this.postsStore.set(response.data.listPosts.items)
+      );
+  }
+
+  async getPostByID(id: string): Promise<any> {
+    return await this.graphQLService.query(getPost, { id })
+      .then(
+        (response) => this.postsStore.set(response.data)
       );
   }
 }

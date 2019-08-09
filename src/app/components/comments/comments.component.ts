@@ -35,7 +35,11 @@ export class CommentsComponent implements OnInit {
     };
 
     await this.commentsQueryService.getCommentsFromServer(commentFilter);
-    this.commentsQuery.comments$.subscribe(comments => this.comments = comments);
+    this.commentsQuery.comments$.subscribe(
+      (comments) => {
+        this.comments = comments.filter(comment => comment.postId === this.postId);
+      }
+    );
   }
 
   onAddComment(email: string, body: string): void {

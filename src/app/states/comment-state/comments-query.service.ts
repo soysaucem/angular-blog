@@ -17,7 +17,7 @@ export class CommentsQueryService {
   async getCommentsFromServer(filter: ModelCommentFilterInput): Promise<any> {
     return await this.graphQLService.query(listComments, { filter })
       .then(
-        (response) => this.commentsStore.set(response.data.listComments.items)
+        (response) => this.commentsStore.add(response.data.listComments.items)
       );
   }
 }
