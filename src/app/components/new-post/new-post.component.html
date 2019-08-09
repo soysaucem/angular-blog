@@ -1,8 +1,13 @@
 <div class="wrapper-new-post">
   <div class="form">
-    <input id="post-title" class="post-title" #newPostTitle type="text" placeholder="Type title for new post"/>
-    <textarea #newPostContent id="post-content" class="post-content" type="text"></textarea>
-    <button class="new-post-submission" (click)="onAddPost(newPostTitle.value, newPostContent.value); newPostTitle.value = ''; newPostContent.value;">
+    <input id="post-title" class="post-title" #newPostTitle type="text" 
+      placeholder="Type title for new post"/>
+    <textarea id="post-content" class="post-content" #newPostContent 
+      type="text"></textarea>
+    <button class="new-post-submission" routerLink="/home"
+      (click)="onAddPost(newPostTitle.value, newPostContent.value);
+        newPostTitle.value = '';
+        newPostContent.value;">
       Post
     </button>
   </div>
