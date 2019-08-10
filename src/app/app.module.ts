@@ -12,8 +12,10 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { NewPostComponent } from './components/new-post/new-post.component';
 import { PagnitionComponent } from './components/pagnition/pagnition.component';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
+
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     AmplifyAngularModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [ AkitaNgRouterStoreModule.forRoot() ] :
+    [ AkitaNgDevtools.forRoot(), AkitaNgRouterStoreModule.forRoot() ]
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

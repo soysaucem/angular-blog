@@ -1,7 +1,7 @@
 .posts-list {
   display: grid;
   max-width: 1280px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 393px));
   grid-gap: 50px;
   margin: 50px auto;
   list-style: none;

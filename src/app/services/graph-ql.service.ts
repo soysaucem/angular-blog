@@ -18,13 +18,4 @@ export class GraphQLService {
       console.log(err.errors[0].message);
     }
   }
-
-  // getListPosts(): Subject<any> {
-  //   const response$ = API.graphql(graphqlOperation(queries.listPosts));
-  //   const subject = new Subject();
-  //   response$.subscribe(
-  //     (response) => subject.next(response)
-  //   );
-  //   return subject;
-  // }
 }

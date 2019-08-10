@@ -34,14 +34,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
    * Get post selected by user to show post detail
    */
   async getSelectedPost(): Promise<any> {
-    const postID: string = this.activatedRoute.snapshot.paramMap.get('id');
+    const postId: string = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if (!this.postsQuery.hasEntity(postID)) {
-      await this.postsQueryService.getPostByID(postID);
+    if (!this.postsQuery.hasEntity(postId)) {
+      await this.postsQueryService.getPostById(postId);
     }
 
     this.subscription = this.postsQuery.posts$.pipe(
-      map(response => response.filter(post => post.id === postID))
+      map(response => response.filter(post => post.id === postId))
     ).subscribe(response => this.post = response);
   }
 }

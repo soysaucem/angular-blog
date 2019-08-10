@@ -20,7 +20,7 @@ export class PostsQueryService {
       );
   }
 
-  async getPostByID(id: string): Promise<any> {
+  async getPostById(id: string): Promise<any> {
     return await this.graphQLService.query(getPost, { id })
       .then(
         (response) => this.postsStore.set(response.data)
