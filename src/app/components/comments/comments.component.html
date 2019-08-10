@@ -12,12 +12,8 @@
 <div class="wrapper-post-comment">
   <input id="user-email" class="email-receiver" #userEmail type="email" 
     placeholder="Enter your email"/>
-  <textarea id="user-comment" class="comment-receiver" #commentContext 
-    type="text"></textarea>
-  <button class="comment-submission" 
-    (click)="onAddComment(userEmail.value, commentContext.value);
-      userEmail.value = ''; 
-      commentContext.value = '';">
+  <textarea id="user-comment" class="comment-receiver" #commentContext type="text"></textarea>
+  <button class="comment-submission" (click)="onAddComment(userEmail.value, commentContext.value); userEmail.value = ''; commentContext.value = '';">
     Publish
   </button>
 </div>
