@@ -1,7 +1,8 @@
-<div *ngIf="comments">
+<ng-container *ngIf="comments$">
+
   <h3 class="comment-header">Comments</h3>
   <ul id="comment-list" class="comments-list">
-    <li class="comment" *ngFor="let comment of comments; let i = index">
+    <li class="comment" *ngFor="let comment of comments$ | async; let i = index">
       <div class="comment-title">
         <label>{{comment.email | titlecase}}</label>
         <div class="dropdown-menu">
@@ -18,7 +19,9 @@
       <button class="edited-comment-submission" style="display: none;" (click)="onUpdateComment(comment, $event)">Submit</button>
     </li>
   </ul>
-</div>
+
+</ng-container>
+
 <div class="wrapper-post-comment">
   <input id="user-email" class="email-receiver" #userEmail type="email" 
     placeholder="Enter your email"/>

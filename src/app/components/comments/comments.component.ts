@@ -2,10 +2,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Comment } from '../../states/comment-state/comments.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsQuery } from 'src/app/states/comment-state/comments.query';
-import { CommentsQueryService } from 'src/app/states/comment-state/comments-query.service';
 import { CommentsService } from 'src/app/states/comment-state/comments.service';
-import { ModelCommentFilterInput, CreateCommentInput, DeleteCommentInput } from 'src/API';
+import { CreateCommentInput, DeleteCommentInput } from 'src/API';
 import { guid } from '@datorama/akita';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comments',
@@ -14,36 +14,18 @@ import { guid } from '@datorama/akita';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  comments: Comment[];
+
+  comments$: Observable<Comment[]>;
   private postId = this.activatedRoute.snapshot.paramMap.get('id');
 
   constructor(
     private commentsQuery: CommentsQuery,
-    private commentsQueryService: CommentsQueryService,
     private commentsService: CommentsService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getPostComments();
-  }
-
-  /**
-   * Get comments of current post
-   */
-  async getPostComments(): Promise<any> {
-    const commentFilter: ModelCommentFilterInput = {
-      postId: {
-        eq: this.postId
-      }
-    };
-
-    await this.commentsQueryService.getCommentsFromServer(commentFilter);
-    this.commentsQuery.comments$.subscribe(
-      (comments) => {
-        this.comments = comments.filter(comment => comment.postId === this.postId);
-      }
-    );
+    this.comments$ = this.commentsQuery.getComments();
   }
 
   onAddComment(email: string, body: string): void {
