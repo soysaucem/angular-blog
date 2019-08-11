@@ -10,6 +10,41 @@
   width: 100%;
 }
 
+.menu-button {
+  padding: 0 5px;
+}
+
+.menu-button:hover {
+  background: #e0e0e0;
+  border-radius: 10%;
+}
+
+.dropdown-menu {
+  float: right;
+  display: block;
+  position: relative;
+}
+
+.dropdown-option {
+  border: 1px solid #eaeaea;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: #f9f9f9;
+  position: absolute;
+  min-width: 60px;
+  z-index: 1;
+}
+
+.option {
+  display: block;
+  padding: 5px 5px;
+  font-size: 12px;
+}
+
+.option:hover {
+  background: #656565;
+  color: #fff;
+}
+
 .wrapper-comment-content {
   color: #656565;
   background: #f7f7f7 none repeat scroll 0 0;
@@ -18,6 +53,18 @@
 
 .comment-content {
   padding: 20px;
+}
+
+.edited-comment-submission {
+  display: block;
+  margin-top: 10px;
+  width: 70px;
+  padding: 10px;
+  border: none;
+  background: rgb(228, 145, 217);
+  border-radius: 5% 5%;
+  font-family: inherit;
+  color: #fff;
 }
 
 .comment-header {

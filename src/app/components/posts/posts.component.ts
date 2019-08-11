@@ -24,18 +24,15 @@ export class PostsComponent implements OnInit {
     this.getPosts();
   }
 
-  /**
-   * Get list of post items
-   */
   async getPosts(): Promise<any> {
     await this.postQueryService.getPostsFromServer();
     this.postsQuery.posts$.subscribe(posts => this.posts = posts);
   }
 
-  async onDeletePost(id: string, event) {
+  async onDeletePost(id: string, event: any) {
     const input: DeletePostInput = { id };
 
-    event.path[1].remove();
+    event.target.parentNode.remove();
 
     return await this.postsService.deletePost(input);
   }

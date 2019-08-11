@@ -1,7 +1,5 @@
-import { ID } from '@datorama/akita';
-
 export interface Post {
-  id: ID;
+  id: string;
   title: string;
   body: string;
 }

@@ -1,8 +1,6 @@
-import { ID } from '@datorama/akita';
-
 export interface Comment {
-  postId: ID;
-  id: ID;
+  id: string;
+  postId: string;
   email: string;
   body: string;
 }
