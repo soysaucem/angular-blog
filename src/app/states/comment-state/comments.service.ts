@@ -26,7 +26,7 @@ export class CommentsService {
   }
 
   async deleteComment(input: DeleteCommentInput): Promise<any> {
-    this.commentsStore.remove({ id: input.id });
+    this.commentsStore.remove(input.id);
 
     return await this.graphQLService.query(deleteComment, { input });
   }

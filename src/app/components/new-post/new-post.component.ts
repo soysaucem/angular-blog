@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../../states/post-state/posts.model';
 import { CreatePostInput } from 'src/API';
 import { PostsService } from 'src/app/states/post-state/posts.service';
+import { guid } from '@datorama/akita';
 
 @Component({
   selector: 'app-new-post',
@@ -19,7 +19,7 @@ export class NewPostComponent implements OnInit {
     if (!body || !title) { return; }
 
     const newPost: CreatePostInput = {
-      id: null,
+      id: guid(),
       title,
       body
     };

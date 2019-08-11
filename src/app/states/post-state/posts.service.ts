@@ -30,7 +30,7 @@ export class PostsService {
   }
 
   async deletePost(input: DeletePostInput): Promise<any> {
-    this.postsStore.remove({ id: input.id });
+    this.postsStore.remove(input.id);
 
     return await this.graphQLService.query(deletePost, { input });
   }

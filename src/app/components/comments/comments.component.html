@@ -1,11 +1,21 @@
 <div *ngIf="comments">
   <h3 class="comment-header">Comments</h3>
-  <ul class="comments-list">
-    <li class="comment" *ngFor="let comment of comments">
-      <label class="comment-title">{{comment.email | titlecase}}</label>
+  <ul id="comment-list" class="comments-list">
+    <li class="comment" *ngFor="let comment of comments; let i = index">
+      <div class="comment-title">
+        <label>{{comment.email | titlecase}}</label>
+        <div class="dropdown-menu">
+          <a class="menu-button fa fa-ellipsis-h" (click)="toggleCommentMenu($event)"></a>
+          <div class="dropdown-option" style="display: none">
+            <label class = "option" (click)="toggleEditComment($event)">Edit</label>
+            <label class = "option" (click)="onDeleteComment(comment.id, $event)">Delete</label>
+          </div>
+        </div>
+      </div>
       <div class="wrapper-comment-content">
         <p class="comment-content">{{comment.body}}</p>
       </div>
+      <button class="edited-comment-submission" style="display: none;" (click)="onUpdateComment(comment, $event)">Submit</button>
     </li>
   </ul>
 </div>
