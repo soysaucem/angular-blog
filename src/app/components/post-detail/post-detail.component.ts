@@ -3,7 +3,7 @@ import { Post } from '../../states/post-state/posts.model';
 import { ActivatedRoute } from '@angular/router';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';
 import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { PostsQueryService } from 'src/app/states/post-state/posts-query.service';
 
 @Component({
@@ -16,18 +16,26 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   post: Post[];
   subscription: Subscription;
 
+  // SKELETON CODE
+  post$: Observable<Post>;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private postsQuery: PostsQuery,
     private postsQueryService: PostsQueryService
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.getSelectedPost();
+    // Simply get a stream of the specific Post from the query
+    const id: string = this.activatedRoute.snapshot.paramMap.get('id');
+    this.post$ = this.postsQueryService.selectPost(id);
+
+
+    this.getSelectedPost(); // TODO REMOVE THIS
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription.unsubscribe(); // TODO REMOVE THIS AS ASYNC PIPE IS USED
   }
 
   /**
