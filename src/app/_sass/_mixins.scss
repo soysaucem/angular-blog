@@ -1,0 +1,13 @@
+@import './variables';
+
+@mixin form-receiver($width, $height) {
+  display: block;
+  width: $width;
+  height: $height;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  color: inherit;
+  font-family: inherit;
+  font-size: 15px;
+  border: $border-style-1;
+}

@@ -1,18 +1,16 @@
+@import '../../_sass/inheritance';
+@import '../../_sass/variables';
+
 .wrapper-new-post {
+  @extend %frame-style-1;
   max-width: 992px;
   width: 100%;
   margin: 20px auto;
-  border: 1px solid #eaeaea;
-  background: rgba(0,0,0,.08);
 }
 
 .form {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  @extend %flex-style-2;
   padding: 40px;
-  justify-content: center;
-  text-align: center;
 }
 
 .post-title, .post-content {
@@ -30,7 +28,7 @@
 
 .post-title:focus, .post-content:focus {
   outline: none;
-  box-shadow: 0.2rem 0.8rem 1.6rem rgba(34, 34, 34, 0.08);
+  box-shadow: $shadow-style-2;
 }
 
 .post-content {
@@ -38,13 +36,7 @@
 }
 
 .new-post-submission {
-  width: 50px;
-  padding: 10px;
-  border: none;
-  background: rgb(228, 145, 217);
-  border-radius: 10%;
-  font-family: inherit;
-  color: #fff;
+  @extend %submission-button;
   margin: auto;
 }
 
@@ -53,5 +45,5 @@
 }
 
 .new-post-submission:hover {
-  background: rgb(170, 111, 162);
+  background: $color-pink-1;
 }

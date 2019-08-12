@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
 

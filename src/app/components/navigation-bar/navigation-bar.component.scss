@@ -1,8 +1,11 @@
+@import '../../_sass/variables';
+
 .nav-link {
   padding-right: 25px;
   text-decoration: none;
-  color: rgb(63, 63, 63);
+  color: $color-grey-2;
 }
+
 .nav-link:last-of-type {
   padding-right: 0;
 }

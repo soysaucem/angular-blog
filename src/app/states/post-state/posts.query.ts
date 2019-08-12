@@ -1,11 +1,10 @@
 import { QueryEntity } from '@datorama/akita';
 import { PostsStore, PostsState } from './posts.store';
 import { Post } from './posts.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { GraphQLService } from 'src/app/services/graph-ql.service';
-import { listPosts, getPost } from 'src/graphql/queries';
-import { onUpdatePost } from 'src/graphql/subscriptions';
+import { listPosts } from 'src/graphql/queries';
 import { RouterQuery } from '@datorama/akita-ng-router-store';
 
 @Injectable({

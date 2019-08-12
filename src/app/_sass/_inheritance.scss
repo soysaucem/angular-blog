@@ -1,0 +1,30 @@
+@import './variables';
+
+%submission-button {
+  display: block;
+  width: 70px;
+  padding: 10px;
+  border: none;
+  background: rgb(228, 145, 217);
+  border-radius: 5%;
+  font-family: inherit;
+  color: #fff;
+}
+
+%flex-style-1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+%flex-style-2 {
+  @extend %flex-style-1;
+  justify-content: center;
+  text-align: center;
+}
+
+%frame-style-1 {
+  display: block;
+  border: $border-style-1;
+  background: $color-grey-1;
+}

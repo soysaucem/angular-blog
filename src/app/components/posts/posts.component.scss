@@ -1,7 +1,10 @@
+@import '../../_sass/inheritance';
+@import '../../_sass/variables';
+
 .posts-list {
   display: grid;
   max-width: 1280px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 393px));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 50px;
   margin: 50px auto;
   list-style: none;
@@ -16,10 +19,8 @@
 }
 
 .post-item {
-  display: block;
-  border: 1px solid #eaeaea;
-  background: rgba(0,0,0,.08);
-  color: rgb(63, 63, 63);
+  @extend %frame-style-1;
+  color: $color-grey-2;
   text-decoration: none;
 }
 
@@ -38,22 +39,24 @@
 }
 
 .new-post-button {
-  color: #a18cd1;
+  color: $color-purple-1;
   margin-top: 15px;
   display: flex;
   justify-content: center;
 }
 
 .new-post-button:hover {
-  color: #7756c5;
+  color: $color-purple-2;
 }
 
 .new-post-button:focus {
   outline: none;
 }
 
-.posts-list li {
-  position: relative;
+.posts-list {
+  li {
+    position: relative;
+  }
 }
 
 .close-button {
@@ -77,6 +80,5 @@
 @media screen and (max-width: 720px) {
   .posts-list {
     margin: 50px 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
