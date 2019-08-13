@@ -73,11 +73,12 @@
 }
 
 .email-receiver {
-  @include form-receiver(25%, 30px);
+  @include form-receiver(25%, 30px, 15px);
 }
 
 .comment-receiver {
-  @include form-receiver(75%, 75px);
+  @include form-receiver(75%, 75px, 15px);
+  border-radius: 0.4rem;
 }
 
 .comment-submission {

@@ -11,7 +11,7 @@ export class PagnitionComponent implements OnInit {
   @Input() itemPerPage: number;
 
   @Output() pageChange = new EventEmitter();
-  
+
   constructor() { }
 
   ngOnInit() {

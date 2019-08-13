@@ -25,7 +25,7 @@ export class CommentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.comments$ = this.commentsQuery.getComments();
+    this.comments$ = this.commentsQuery.getComments(this.postId);
   }
 
   onAddComment(email: string, body: string): void {

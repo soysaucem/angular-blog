@@ -1,13 +1,14 @@
 @import './variables';
 
-@mixin form-receiver($width, $height) {
+@mixin form-receiver($width, $height, $font-size) {
   display: block;
-  width: $width;
-  height: $height;
-  margin-bottom: 20px;
-  padding: 10px 15px;
   color: inherit;
   font-family: inherit;
-  font-size: 15px;
+  margin-bottom: 20px;
+  width: $width;
+  height: $height;
+  padding: 0.8rem 1.0rem;
+  border-radius: 0.4rem;
+  font-size: $font-size;
   border: $border-style-1;
 }

@@ -1,5 +1,6 @@
 @import '../../_sass/inheritance';
 @import '../../_sass/variables';
+@import '../../_sass/mixins';
 
 .wrapper-new-post {
   @extend %frame-style-1;
@@ -14,16 +15,7 @@
 }
 
 .post-title, .post-content {
-  display: block;
-  margin: 0;
-  padding: 0.8rem 1.6rem;
-  color: inherit;
-  width: 100%;
-  font-family: inherit;
-  font-size: 20px;
-  border: none;
-  border-radius: 0.4rem;
-  margin-bottom: 20px;
+  @include form-receiver(100%, 100, 20px);
 }
 
 .post-title:focus, .post-content:focus {
