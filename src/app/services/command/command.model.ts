@@ -1,3 +1,3 @@
 export interface Command {
-  execute();
+  execute(type: any, params: any): any;
 }

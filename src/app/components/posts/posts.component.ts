@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../states/post-state/posts.model';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';
-import { DeletePostInput, DeleteCommentInput } from 'src/API';
-import { PostsService } from 'src/app/states/post-state/posts.service';
 import { Observable } from 'rxjs';
-import { CommentsQuery } from 'src/app/states/comment-state/comments.query';
-import { CommentsService } from 'src/app/states/comment-state/comments.service';
+import { Button } from 'src/app/services/command/button-command/button';
+import { DeleteCommandService } from 'src/app/services/command/button-command/delete-command.service';
+import { DeleteType } from 'src/app/classes/deleteType';
 
 @Component({
   selector: 'app-posts',
@@ -15,35 +14,16 @@ import { CommentsService } from 'src/app/states/comment-state/comments.service';
 export class PostsComponent implements OnInit {
 
   posts$: Observable<Post[]>;
+  deletePostButton: Button = new Button();
 
   constructor(
     private postsQuery: PostsQuery,
-    private postsService: PostsService,
-    private commentsQuery: CommentsQuery,
-    private commentsService: CommentsService
+    private deleteCommandService: DeleteCommandService
   ) { }
 
   ngOnInit() {
     this.posts$ = this.postsQuery.getPosts();
-  }
-
-  async onDeletePost(id: string, event: any) {
-    const input: DeletePostInput = { id };
-
-    event.target.parentNode.remove();
-    this.deletePostComments(id);
-
-    return await this.postsService.deletePost(input);
-  }
-
-  deletePostComments(postId: string): void {
-    const comments$ = this.commentsQuery.getComments(postId);
-    comments$.subscribe(
-      (comments) => {
-        comments.forEach(async (comment) => {
-          await this.commentsService.deleteComment({ id: comment.id });
-        });
-      }
-    );
+    this.deletePostButton.setCommand(this.deleteCommandService);
+    this.deletePostButton.setType(DeleteType.POST_DELETE);
   }
 }

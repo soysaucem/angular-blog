@@ -6,17 +6,17 @@
       <div class="comment-title">
         <label>{{comment.email | titlecase}}</label>
         <div class="dropdown-menu">
-          <a class="menu-button fa fa-ellipsis-h" (click)="toggleCommentMenu($event)"></a>
+          <a class="menu-button fa fa-ellipsis-h" (click)="toggleMenuButton.press({ event: $event })"></a>
           <div class="dropdown-option" style="display: none">
-            <label class = "option" (click)="toggleEditComment($event)">Edit</label>
-            <label class = "option" (click)="onDeleteComment(comment.id, $event)">Delete</label>
+            <label class = "option" (click)="toggleEditButton.press({ event: $event })">Edit</label>
+            <label class = "option" (click)="deleteCommentButton.press({ id: comment.id, event: $event })">Delete</label>
           </div>
         </div>
       </div>
       <div class="wrapper-comment-content">
         <p class="comment-content">{{comment.body}}</p>
       </div>
-      <button class="edited-comment-submission" style="display: none;" (click)="onUpdateComment(comment, $event)">Submit</button>
+      <button class="edited-comment-submission" style="display: none;" (click)="updateCommentButton.press({ comment: comment, event: $event })">Update</button>
     </li>
   </ul>
 
@@ -25,8 +25,8 @@
 <div class="wrapper-post-comment">
   <input id="user-email" class="email-receiver" #userEmail type="email" 
     placeholder="Enter your email"/>
-  <textarea id="user-comment" class="comment-receiver" #commentContext type="text"></textarea>
-  <button class="comment-submission" (click)="onAddComment(userEmail.value, commentContext.value); userEmail.value = ''; commentContext.value = '';">
+  <textarea id="user-comment" class="comment-receiver" #commentContent type="text"></textarea>
+  <button class="comment-submission" (click)="addCommentButton.press({ postId: postId, email: userEmail.value, body: commentContent.value }); userEmail.value = ''; commentContent.value = '';">
     Publish
   </button>
 </div>

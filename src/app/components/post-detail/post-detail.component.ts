@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../../states/post-state/posts.model';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-detail',
@@ -15,10 +16,12 @@ export class PostDetailComponent implements OnInit {
 
   constructor(
     private postsQuery: PostsQuery,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     // Simply get a stream of the specific Post from the query
-    this.post$ = this.postsQuery.selectPost();
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.post$ = this.postsQuery.selectPost(id);
   }
 }

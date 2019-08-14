@@ -7,7 +7,7 @@
 <div class="wrapper-posts">
   <ul class="posts-list">
     <li *ngFor="let post of posts$ | async">
-      <i class="close-button fa fa-times-circle fa-3x" (click)="onDeletePost(post.id, $event)"></i>
+      <i class="close-button fa fa-times-circle fa-3x" (click)="deletePostButton.press({ id: post.id, event: $event })"></i>
       <a class="post-item" routerLink="/content/{{post.id}}">
         <img class="post-image" src="/assets/images/lauren-mancke-aOC7TSLb1o8-unsplash.jpg"/>
         <p class="post-label">{{post.title | uppercase}}</p>

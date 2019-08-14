@@ -1,0 +1,4 @@
+export enum DeleteType {
+  POST_DELETE = 'POST_DELETE',
+  COMMENT_DELETE = 'COMMENT_DELETE'
+}

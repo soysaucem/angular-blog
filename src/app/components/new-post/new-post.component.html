@@ -2,7 +2,7 @@
   <div class="form">
     <input id="post-title" class="post-title" #newPostTitle type="text" placeholder="Type title for new post"/>
     <textarea id="post-content" class="post-content" #newPostContent type="text"></textarea>
-    <button class="new-post-submission" routerLink="/home" (click)="onAddPost(newPostTitle.value, newPostContent.value); newPostTitle.value = ''; newPostContent.value;">
+    <button class="new-post-submission" routerLink="/home" (click)="addPostButton.press({ title: newPostTitle.value, body: newPostContent.value }); newPostTitle.value = ''; newPostContent.value;">
       Post
     </button>
   </div>

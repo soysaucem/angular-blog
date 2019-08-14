@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CreatePostInput } from 'src/API';
-import { PostsService } from 'src/app/states/post-state/posts.service';
-import { guid } from '@datorama/akita';
+import { Button } from 'src/app/services/command/button-command/button';
+import { AddCommandService } from 'src/app/services/command/button-command/add-command.service';
+import { AddType } from 'src/app/classes/addType';
 
 @Component({
   selector: 'app-new-post',
@@ -10,20 +10,12 @@ import { guid } from '@datorama/akita';
 })
 export class NewPostComponent implements OnInit {
 
-  constructor(private postsService: PostsService) { }
+  addPostButton: Button = new Button();
+
+  constructor(private addCommandService: AddCommandService) { }
 
   ngOnInit() {
-  }
-
-  async onAddPost(title: string, body: string) {
-    if (!body || !title) { return; }
-
-    const newPost: CreatePostInput = {
-      id: guid(),
-      title,
-      body
-    };
-
-    return await this.postsService.addPost(newPost);
+    this.addPostButton.setCommand(this.addCommandService);
+    this.addPostButton.setType(AddType.POST_ADD);
   }
 }

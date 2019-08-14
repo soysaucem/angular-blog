@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { GraphQLService } from 'src/app/services/graph-ql.service';
 import { listPosts } from 'src/graphql/queries';
-import { RouterQuery } from '@datorama/akita-ng-router-store';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,7 @@ export class PostsQuery extends QueryEntity<PostsState> {
 
   constructor(
     protected store: PostsStore,
-    private graphQLService: GraphQLService,
-    private routerQuery: RouterQuery
+    private graphQLService: GraphQLService
   ) {
     super(store);
   }
@@ -28,11 +26,9 @@ export class PostsQuery extends QueryEntity<PostsState> {
    * ADVANCED: at the end of this step, also **subscribe** to any updates
    *           of that post for some awesome real-time stuff.
    */
-  selectPost(): Observable<Post> {
-    const id: string = this.routerQuery.getParams('id');
-
-    // If store is empty, fetch data from server
-    if (this.getCount() === 0) {
+  selectPost(id: string): Observable<Post> {
+    // If store does not have selected post, fetch data from server
+    if (!this.hasEntity(id)) {
       this.getPostsFromServer();
     }
 
