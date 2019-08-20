@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Comment } from '../../states/comment-state/comments.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsQuery } from 'src/app/states/comment-state/comments.query';
@@ -16,7 +16,6 @@ import { UpdateCommandService } from 'src/app/services/command/button-command/up
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
