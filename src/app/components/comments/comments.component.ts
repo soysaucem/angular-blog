@@ -30,7 +30,7 @@ export class CommentsComponent implements OnInit, DoCheck {
 
   constructor(
     private commentsQuery: CommentsQuery,
-    private activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     private addCommandService: AddCommandService,
     private deleteCommandService: DeleteCommandService,
     private toggleCommandService: ToggleCommandService,
