@@ -1,11 +1,4 @@
 {
-	"auth": {
-		"angularblog92cff77f": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	},
 	"api": {
 		"angularblog": {
 			"service": "AppSync",
@@ -13,12 +6,6 @@
 			"output": {
 				"securityType": "API_KEY"
 			}
-		}
-	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation"
 		}
 	}
 }

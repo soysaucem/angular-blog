@@ -7,7 +7,7 @@
         "config": {
             "SourceDir": "src",
             "DistributionDir": "dist/angular-blog",
-            "BuildCommand": "npm run-script build",
+            "BuildCommand": "npm.cmd run-script build",
             "StartCommand": "ng serve"
         }
     },
