@@ -23,13 +23,24 @@ export class ToggleCommandService implements Command {
         .parentNode.childNodes[1].childNodes[0] as HTMLElement;
         const liCommentElement = params.event.target.parentNode.parentNode.parentNode.parentNode;
         // Toggle contenteditable mode of a comment
-        commentContent.setAttribute('contenteditable', 'true');
-        // Focus on comment content area after triggered edit mode
-        liCommentElement.childNodes[1].childNodes[0].focus();
-        // Show submit button to post new comment content
-        liCommentElement.childNodes[2].style.display = 'block';
-        // Hide comment menu after selected edit comment
-        params.event.target.parentNode.style.display = 'none';
+        if (commentContent.getAttribute('contenteditable') === 'false') {
+          commentContent.setAttribute('contenteditable', 'true');
+          // Focus on comment content area after triggered edit mode
+          liCommentElement.childNodes[1].childNodes[0].focus();
+          // Show submit button to post new comment content
+          liCommentElement.childNodes[2].style.display = 'block';
+          // Hide comment menu after selected edit comment
+          params.event.target.parentNode.style.display = 'none';
+        } else {
+          commentContent.setAttribute('contenteditable', 'false');
+          // Hide submit button to post new comment content
+          liCommentElement.childNodes[2].style.display = 'none';
+          // Hide comment menu after selected edit comment
+          params.event.target.parentNode.style.display = 'none';
+        }
+        break;
+      case ToggleType.SEARCH_BOX:
+        params.showSearchBox = !params.showSearchBox;
         break;
       default:
         throw new Error('ToggleCommand failed to execute');

@@ -26,7 +26,7 @@
   <input id="user-email" class="email-receiver" #userEmail type="email" 
     placeholder="Enter your email"/>
   <textarea id="user-comment" class="comment-receiver" #commentContent type="text"></textarea>
-  <button class="comment-submission" (click)="addCommentButton.press({ postId: postId, email: userEmail.value, body: commentContent.value }); userEmail.value = ''; commentContent.value = '';">
+  <button class="comment-submission" (click)="addCommentButton.press({ postId: activatedRoute.snapshot.paramMap.get('id'), email: userEmail.value, body: commentContent.value }); userEmail.value = ''; commentContent.value = '';">
     Publish
   </button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Comment } from '../../states/comment-state/comments.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsQuery } from 'src/app/states/comment-state/comments.query';
@@ -18,7 +18,7 @@ import { UpdateCommandService } from 'src/app/services/command/button-command/up
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, DoCheck {
 
   comments$: Observable<Comment[]>;
   addCommentButton: Button = new Button();
@@ -26,7 +26,7 @@ export class CommentsComponent implements OnInit {
   toggleMenuButton: Button = new Button();
   toggleEditButton: Button = new Button();
   updateCommentButton: Button = new Button();
-  postId = this.activatedRoute.snapshot.paramMap.get('id');
+  previousPostId: string;
 
   constructor(
     private commentsQuery: CommentsQuery,
@@ -38,7 +38,22 @@ export class CommentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.comments$ = this.commentsQuery.getComments(this.postId);
+    const postId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.setUpComments(postId);
+    this.previousPostId = postId;
+  }
+
+  // Initialize new comments that is linked to selected post in search box
+  ngDoCheck() {
+    const postId = this.activatedRoute.snapshot.paramMap.get('id');
+    if ( postId !== this.previousPostId) {
+      this.setUpComments(postId);
+      this.previousPostId = postId;
+    }
+  }
+
+  setUpComments(postId: string): void {
+    this.comments$ = this.commentsQuery.getComments(postId);
     this.addCommentButton.setCommand(this.addCommandService);
     this.addCommentButton.setType(AddType.COMMENT_ADD);
     this.deleteCommentButton.setCommand(this.deleteCommandService);
