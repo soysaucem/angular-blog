@@ -31,7 +31,7 @@
   outline: none;
 }
 
-.close {
+.close-button {
   position: absolute;
   right: 55px;
   top: 35px;
@@ -41,7 +41,7 @@
   text-decoration: none;
 }
 
-.close:hover {
+.close-button:hover {
   color: $color-grey-3;
 }
 

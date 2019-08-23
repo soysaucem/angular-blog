@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { switchMap, debounceTime, tap, map, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Post } from 'src/app/states/post-state/posts.model';
 import { PostsQuery } from 'src/app/states/post-state/posts.query';

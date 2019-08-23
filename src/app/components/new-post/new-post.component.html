@@ -1,8 +1,35 @@
 <div class="wrapper-new-post">
   <div class="form">
-    <input id="post-title" class="post-title" #newPostTitle type="text" placeholder="Type title for new post"/>
-    <textarea id="post-content" class="post-content" #newPostContent type="text"></textarea>
-    <button class="new-post-submission" routerLink="/home" (click)="addPostButton.press({ title: newPostTitle.value, body: newPostContent.value }); newPostTitle.value = ''; newPostContent.value;">
+    <input required
+      ngModel
+      id="post-title"
+      name="newPostTitle"
+      class="post-title"
+      #newPostTitle="ngModel"
+      type="text"
+      placeholder="Type title for new post"/>
+    <div *ngIf="newPostTitle.invalid && (newPostTitle.dirty || newPostTitle.touched)"
+      class="alert alert-danger">
+      Title is required.
+    </div>
+    <textarea 
+      required
+      ngModel
+      id="post-content"
+      name="newPostContent"
+      class="post-content"
+      #newPostContent="ngModel"
+      type="text">
+    </textarea>
+    <div *ngIf="newPostContent.invalid && (newPostContent.dirty || newPostContent.touched)"
+      class="alert alert-danger">
+      Content is required.
+    </div>
+    <button class="new-post-submission btn"
+      type="submit"
+      [disabled]="newPostTitle.invalid || newPostContent.invalid"
+      routerLink="/home"
+      (click)="addPostButton.press({ title: newPostTitle.value, body: newPostContent.value }); newPostTitle.value = ''; newPostContent.value;">
       Post
     </button>
   </div>

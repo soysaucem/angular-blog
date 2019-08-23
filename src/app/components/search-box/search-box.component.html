@@ -1,7 +1,7 @@
 <ng-container *ngIf="showSearchBox">
 
   <div class="search-wrapper">
-    <a href="javascript:void(0)" class="close" (click)="closeSearchBox()">&times;</a>
+    <a href="javascript:void(0)" class="close-button" (click)="closeSearchBox()">&times;</a>
     <input #searchBox class="search-box" formControlName="text" type="text" placeholder="Type to search" (input)="setSearchInput(searchBox.value)">+
     <ng-container *ngIf="posts$ && searchBox.value !== ''">
 

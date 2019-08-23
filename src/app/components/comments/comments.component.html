@@ -5,10 +5,10 @@
     <li class="comment" *ngFor="let comment of comments$ | async; let i = index">
       <div class="comment-title">
         <label>{{comment.email | titlecase}}</label>
-        <div class="dropdown-menu">
+        <div class="custom-dropdown-menu">
           <a class="menu-button fa fa-ellipsis-h" (click)="toggleMenuButton.press({ event: $event })"></a>
           <div class="dropdown-option" style="display: none">
-            <label class = "option" (click)="toggleEditButton.press({ event: $event })">Edit</label>
+            <label class = "option" (click)="toggleEditButton.press({ event: $event });">Edit</label>
             <label class = "option" (click)="deleteCommentButton.press({ id: comment.id, event: $event })">Delete</label>
           </div>
         </div>
@@ -23,10 +23,41 @@
 </ng-container>
 
 <div class="wrapper-post-comment">
-  <input id="user-email" class="email-receiver" #userEmail type="email" 
+  <input 
+    required
+    email
+    ngModel
+    name="userEmail"
+    id="user-email"
+    class="email-receiver"
+    #userEmail="ngModel"
+    type="email" 
     placeholder="Enter your email"/>
-  <textarea id="user-comment" class="comment-receiver" #commentContent type="text"></textarea>
-  <button class="comment-submission" (click)="addCommentButton.press({ postId: activatedRoute.snapshot.paramMap.get('id'), email: userEmail.value, body: commentContent.value }); userEmail.value = ''; commentContent.value = '';">
+  <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)"
+    class="alert alert-danger">
+    <div *ngIf="userEmail.errors.required">
+      Email is required.
+    </div>
+    <div *ngIf="userEmail.errors.email">
+      Invalid email.
+    </div>
+  </div>
+  <textarea 
+    required
+    ngModel
+    name="commentContent"
+    id="user-comment"
+    class="comment-receiver"
+    #commentContent="ngModel"
+    type="text">
+  </textarea>
+  <div *ngIf="commentContent.invalid && (commentContent.dirty || commentContent.touched)"
+    class="alert alert-danger">
+    Content is required.
+  </div>
+  <button class="comment-submission btn"
+    [disabled]="commentContent.invalid || userEmail.invalid"
+    (click)="addCommentButton.press({ postId: activatedRoute.snapshot.paramMap.get('id'), email: userEmail.value, body: commentContent.value }); userEmail.value = ''; commentContent.value = '';">
     Publish
   </button>
 </div>

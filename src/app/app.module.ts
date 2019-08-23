@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostsComponent } from './components/posts/posts.component';
@@ -31,6 +32,8 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AmplifyAngularModule,
     environment.production ? [ AkitaNgRouterStoreModule.forRoot() ] :

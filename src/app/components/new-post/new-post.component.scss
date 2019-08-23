@@ -1,6 +1,7 @@
 @import '../../_sass/inheritance';
 @import '../../_sass/variables';
 @import '../../_sass/mixins';
+@import '../../_sass/validation';
 
 .wrapper-new-post {
   @extend %frame-style-1;
@@ -39,3 +40,5 @@
 .new-post-submission:hover {
   background: $color-pink-1;
 }
+
+

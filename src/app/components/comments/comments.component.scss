@@ -1,6 +1,7 @@
 @import '../../_sass/inheritance';
 @import '../../_sass/mixins';
 @import '../../_sass/variables';
+@import '../../_sass/validation';
 
 .comments-list {
   display: block;
@@ -16,6 +17,8 @@
 
 .menu-button {
   padding: 0 5px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .menu-button:hover {
@@ -23,7 +26,7 @@
   border-radius: 10%;
 }
 
-.dropdown-menu {
+.custom-dropdown-menu {
   float: right;
   display: block;
   position: relative;
@@ -42,6 +45,7 @@
   display: block;
   padding: 5px 5px;
   font-size: 12px;
+  font-weight: normal;
 }
 
 .option:hover {

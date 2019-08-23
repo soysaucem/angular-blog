@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Button } from 'src/app/services/command/button-command/button';
 import { AddCommandService } from 'src/app/services/command/button-command/add-command.service';
 import { AddType } from 'src/app/classes/addType';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-new-post',
