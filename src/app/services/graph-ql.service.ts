@@ -13,7 +13,7 @@ export class GraphQLService {
     try {
       return await API.graphql(graphqlOperation(query, params));
     } catch (err) {
-      console.log(err.errors[0].message);
+      return Promise.reject(Error(`[GraphQLService] Failed to send query: ${err.errors[0].message}`));
     }
   }
 
