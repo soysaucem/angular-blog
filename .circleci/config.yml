@@ -7,10 +7,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: angular-blog-master-{{ checksum "package-lock.json" }}
+          key: angular-blog-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm install
       - save_cache:
-          key: angular-blog-master-{{ checksum "package-lock.json" }}
+          key: angular-blog-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
