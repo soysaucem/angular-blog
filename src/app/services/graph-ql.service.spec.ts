@@ -1,12 +1,47 @@
 import { TestBed } from '@angular/core/testing';
 
 import { GraphQLService } from './graph-ql.service';
+import { configureTestSuite } from 'ng-bullet';
+import { API } from 'aws-amplify';
 
 describe('GraphQlService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: GraphQLService;
+  let serviceSpy: jasmine.Spy;
+
+  configureTestSuite(() => {
+    TestBed.configureTestingModule({ providers: [GraphQLService] });
+  });
+
+  beforeEach(() => {
+    service = TestBed.get(GraphQLService);
+    serviceSpy = spyOn(API, 'graphql');
+  });
 
   it('should be created', () => {
-    const service: GraphQLService = TestBed.get(GraphQLService);
     expect(service).toBeTruthy();
+  });
+
+  describe('query()', () => {
+    const query = 'query';
+    const params = { foo: 'bar' };
+
+    it('should create and send query with params', () => {
+      expect(service.query(query, params)).toBeDefined();
+    });
+
+    it('should return the response matching with query', (done: DoneFn) => {
+      const testValue = { foo: 'bar' };
+      serviceSpy.and.returnValue(Promise.resolve(testValue));
+      service.query(query, params).then(value => {
+        expect(value).toEqual(testValue);
+        done();
+      });
+    });
+  });
+
+  describe('subscribeData()', () => {
+    it('', () => {
+
+    });
   });
 });
