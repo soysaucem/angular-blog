@@ -30,11 +30,6 @@ export class CommentsQuery extends QueryEntity<CommentsState> {
 
     this.getCommentsFromServer(commentFilter);
 
-    // Real-time subscription to any comment data changes from server
-    this.subscribeCreatedComment();
-    this.subscribeDeletedComment();
-    this.subscribeUpdatedComment();
-
     return this.selectAll().pipe(
       map(comments => comments.filter(comment => comment.postId === postId))
     );

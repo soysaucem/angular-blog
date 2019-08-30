@@ -40,9 +40,9 @@ describe('GraphQlService', () => {
     });
   });
 
-  describe('subscribeData()', () => {
-    it('', () => {
+  // describe('subscribeData()', () => {
+  //   it('', () => {
 
-    });
-  });
+  //   });
+  // });
 });

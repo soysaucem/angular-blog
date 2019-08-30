@@ -25,5 +25,8 @@ export class PostsComponent implements OnInit {
     this.posts$ = this.postsQuery.getPosts();
     this.deletePostButton.setCommand(this.deleteCommandService);
     this.deletePostButton.setType(DeleteType.POST_DELETE);
+    // Real-time subscription to any post data changes from server
+    this.postsQuery.subscribeCreatedPost();
+    this.postsQuery.subscribeDeletedPost();
   }
 }

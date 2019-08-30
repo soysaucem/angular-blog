@@ -41,6 +41,10 @@ export class CommentsComponent implements OnInit, DoCheck {
     const postId = this.activatedRoute.snapshot.paramMap.get('id');
     this.setUpComments(postId);
     this.previousPostId = postId;
+    // Real-time subscription to any comment data changes from server
+    this.commentsQuery.subscribeCreatedComment();
+    this.commentsQuery.subscribeDeletedComment();
+    this.commentsQuery.subscribeUpdatedComment();
   }
 
   // Initialize new comments that is linked to selected post in search box

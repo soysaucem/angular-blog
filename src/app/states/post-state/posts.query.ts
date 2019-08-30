@@ -59,10 +59,6 @@ export class PostsQuery extends QueryEntity<PostsState> {
       this.getPostsFromServer();
     }
 
-    // Real-time subscription to any post data changes from server
-    this.subscribeCreatedPost();
-    this.subscribeDeletedPost();
-
     return this.selectAll();
   }
 
