@@ -26,6 +26,7 @@ describe('GraphQlService', () => {
     const params = { foo: 'bar' };
 
     it('should create and send query with params', () => {
+      expect(service.query(query, params)).toHaveBeenCalled();
       expect(service.query(query, params)).toBeDefined();
     });
 

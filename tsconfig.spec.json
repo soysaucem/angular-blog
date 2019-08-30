@@ -9,6 +9,7 @@
   },
   "files": [
     "src/test.ts",
+    "src/test.integration.ts",
     "src/polyfills.ts"
   ],
   "include": [
