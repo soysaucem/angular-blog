@@ -49,7 +49,8 @@ export class PostsQuery extends QueryEntity<PostsState> {
     // }
 
     return this.selectAll().pipe(
-      map(posts => posts.filter(post => post.title.includes(input)))
+      map(posts => posts.filter(post => post.title.toLowerCase()
+        .includes(input.toLowerCase())))
     );
   }
 
