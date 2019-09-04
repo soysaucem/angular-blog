@@ -11,12 +11,15 @@ export class GraphQLService {
 
   async query(query: string, params: any) {
     try {
-      return await API.graphql(graphqlOperation(query, params));
+      const result = await API.graphql(graphqlOperation(query, params));
+      return result;
     } catch (err) {
       if (err.errors && err.errors.length > 0) {
         const message = err.errors[0].message;
         return Promise.reject(Error(`[GraphQLService] Failed to send query: ${message}`));
       }
+
+      return Promise.reject(err);
     }
   }
 
