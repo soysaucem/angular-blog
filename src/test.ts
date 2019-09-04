@@ -6,6 +6,12 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
+import Amplify from '@aws-amplify/core';
+import awsmobile from './aws-exports';
+import API from '@aws-amplify/api';
+
+Amplify.configure(awsmobile);
+API.configure(awsmobile);
 
 declare const require: any;
 

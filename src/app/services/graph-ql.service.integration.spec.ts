@@ -35,14 +35,14 @@ describe('Integration GraphQLService Test', () => {
 
     service.query(createPost, { input: createPostInput }).then(
       (response) => {
-        console.log(response);
         deletePostInput = { id: response.data.createPost.id };
         expect(response.data.createPost).toEqual(createPostInput);
-        return service.query(deletePost, { deletePostInput });
+        return service.query(deletePost, { input: deletePostInput });
       }
     ).then(
       (response) => {
-        expect(response.data.deletePost).toEqual(deletePostInput);
+        const responseId: DeletePostInput = { id: response.data.deletePost.id };
+        expect(responseId).toEqual(deletePostInput);
         done();
       }
     ).catch(error => { fail(error); done(); });
