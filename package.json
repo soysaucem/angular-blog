@@ -28,7 +28,7 @@
     "angular-in-memory-web-api": "^0.8.0",
     "aws-amplify": "^1.1.35",
     "aws-amplify-angular": "^3.0.10",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "immutable": "^4.0.0-rc.12",
     "jw-angular-pagination": "^1.1.0",
